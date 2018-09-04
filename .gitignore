@@ -1,0 +1,8 @@
+*.exe
+*.zip
+*.msi
+
+*.log
+vendor
+nbproject
+.idea
