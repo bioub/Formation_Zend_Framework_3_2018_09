@@ -2,7 +2,7 @@
 
 $config = [
     'factories' => [
-        \Psr\Log\LoggerInterface::class => function() { // factory
+        \Psr\Log\LoggerInterface::class => function() { // factory (idéalement dans une classe Factory pour la mise en cache de config)
             $logger = new \Zend\Log\Logger();
             $writer = new \Zend\Log\Writer\Stream('app.log');
             $logger->addWriter($writer); // Lazy Load

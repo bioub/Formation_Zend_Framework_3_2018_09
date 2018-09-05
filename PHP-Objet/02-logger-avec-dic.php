@@ -1,10 +1,13 @@
 <?php
+
+use Psr\Log\LoggerInterface;
+
 require_once 'vendor/autoload.php';
 $sm = require_once 'config-services.php';
 
-function createUser(\Psr\Log\LoggerInterface $logger) {
+function createUser(LoggerInterface $logger) {
     $logger->info('User created');
 }
 
-$logger = $sm->get(\Psr\Log\LoggerInterface::class);
+$logger = $sm->get(LoggerInterface::class);
 createUser($logger);

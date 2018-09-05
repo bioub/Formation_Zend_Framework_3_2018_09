@@ -2,11 +2,8 @@
 
 namespace Orsys\Logger;
 
-
-use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
-use Psr\Log\LogLevel;
 
 class Logger implements LoggerInterface
 {

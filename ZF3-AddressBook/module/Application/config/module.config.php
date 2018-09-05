@@ -39,9 +39,35 @@ return [
                         'type' => Segment::class,
                         'options' => [
                             'route' => '/:id',
+                            'constraints' => [
+                                'id' => '[1-9][0-9]*',
+                            ],
                             'defaults' => [
                                 // 'controller' => Controller\ContactController::class,
                                 'action' => 'show',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'update' => [
+                                'type' => Literal::class,
+                                'options' => [
+                                    'route' => '/update',
+                                    'defaults' => [
+                                        // 'controller' => Controller\ContactController::class,
+                                        'action' => 'update',
+                                    ],
+                                ],
+                            ],
+                            'delete' => [
+                                'type' => Literal::class,
+                                'options' => [
+                                    'route' => '/delete',
+                                    'defaults' => [
+                                        // 'controller' => Controller\ContactController::class,
+                                        'action' => 'delete',
+                                    ],
+                                ],
                             ],
                         ],
                     ],
