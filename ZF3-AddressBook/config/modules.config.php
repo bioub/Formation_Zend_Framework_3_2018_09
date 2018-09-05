@@ -11,12 +11,16 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Zend\Cache',
+    'Zend\Paginator',
     'Zend\Mvc\Plugin\Prg',
     'Zend\Mvc\Plugin\Identity',
     'Zend\Mvc\Plugin\FlashMessenger',
     'Zend\Mvc\Plugin\FilePrg',
     'Zend\Router',
     'Zend\Validator',
+    'DoctrineModule',
+    'DoctrineORMModule',
     'Bootstrap',
     'Application', // nos modules à la fin
     // pour la priorité des config
