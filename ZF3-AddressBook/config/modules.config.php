@@ -17,6 +17,7 @@ return [
     'Zend\Mvc\Plugin\FilePrg',
     'Zend\Router',
     'Zend\Validator',
+    'Bootstrap',
     'Application', // nos modules à la fin
     // pour la priorité des config
 ];

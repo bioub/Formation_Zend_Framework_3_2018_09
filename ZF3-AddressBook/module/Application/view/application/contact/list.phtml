@@ -1,0 +1,26 @@
+<h2>Contact List</h2>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td>Jean Dupont</td>
+            <td>
+                <a class="btn btn-xs btn-primary" href="<?=$this->url('contact/show', ['id' => 1])?>">Afficher</a>
+                <a class="btn btn-xs btn-warning" href="<?=$this->url('contact/show/update', ['id' => 1])?>">Modifier</a>
+                <a class="btn btn-xs btn-danger" href="<?=$this->url('contact/show/delete', ['id' => 1])?>">Supprimer</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Eric Martin</td>
+            <td>
+                <a class="btn btn-xs btn-primary" href="<?=$this->url('contact/show', ['id' => 987])?>">Afficher</a>
+                <a class="btn btn-xs btn-warning" href="<?=$this->url('contact/show/update', ['id' => 987])?>">Modifier</a>
+                <a class="btn btn-xs btn-danger" href="<?=$this->url('contact/show/delete', ['id' => 987])?>">Supprimer</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    <a class="btn btn-default" href="<?=$this->url('contact/add')?>">Ajouter un contact</a>
+</p>
