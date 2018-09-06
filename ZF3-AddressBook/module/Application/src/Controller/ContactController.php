@@ -3,7 +3,9 @@
 namespace Application\Controller;
 
 use Application\Entity\Contact;
+use Application\Form\ContactForm;
 use Application\Service\ContactService;
+use Zend\Form\Form;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
@@ -46,7 +48,14 @@ class ContactController extends AbstractActionController
 
     public function addAction()
     {
-        return new ViewModel();
+        // TODO : idéalement récupérer le form depuis le service manager
+        $form = new ContactForm();
+
+
+
+        return new ViewModel([
+            'contactForm' => $form,
+        ]);
     }
 
     public function updateAction()

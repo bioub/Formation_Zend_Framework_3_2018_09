@@ -12,7 +12,7 @@ body {
     <tbody>
         <?php foreach ($contacts as $c) : ?>
         <tr>
-            <td><?=$c->getFirstName()?> <?=$c->getLastName()?></td>
+            <td><?=$this->escapeHtml($c->getFirstName())?> <?=$this->escapeHtml($c->getLastName())?></td>
             <td>
                 <a class="btn btn-xs btn-primary" href="<?=$this->url('contact/show', ['id' => $c->getId()])?>">Afficher</a>
                 <a class="btn btn-xs btn-warning" href="<?=$this->url('contact/show/update', ['id' => $c->getId()])?>">Modifier</a>
