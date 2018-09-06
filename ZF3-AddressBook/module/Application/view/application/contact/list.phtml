@@ -1,23 +1,25 @@
+<?php $this->headTitle('Liste des contacts'); ?>
+
+<?php $this->headStyle()->captureStart(); ?>
+body {
+    /* background: purple; */
+}
+<?php $this->headStyle()->captureEnd(); ?>
+
 <h2>Contact List</h2>
 
 <table class="table">
     <tbody>
+        <?php foreach ($contacts as $c) : ?>
         <tr>
-            <td>Jean Dupont</td>
+            <td><?=$c->getFirstName()?> <?=$c->getLastName()?></td>
             <td>
-                <a class="btn btn-xs btn-primary" href="<?=$this->url('contact/show', ['id' => 1])?>">Afficher</a>
-                <a class="btn btn-xs btn-warning" href="<?=$this->url('contact/show/update', ['id' => 1])?>">Modifier</a>
-                <a class="btn btn-xs btn-danger" href="<?=$this->url('contact/show/delete', ['id' => 1])?>">Supprimer</a>
+                <a class="btn btn-xs btn-primary" href="<?=$this->url('contact/show', ['id' => $c->getId()])?>">Afficher</a>
+                <a class="btn btn-xs btn-warning" href="<?=$this->url('contact/show/update', ['id' => $c->getId()])?>">Modifier</a>
+                <a class="btn btn-xs btn-danger" href="<?=$this->url('contact/show/delete', ['id' => $c->getId()])?>">Supprimer</a>
             </td>
         </tr>
-        <tr>
-            <td>Eric Martin</td>
-            <td>
-                <a class="btn btn-xs btn-primary" href="<?=$this->url('contact/show', ['id' => 987])?>">Afficher</a>
-                <a class="btn btn-xs btn-warning" href="<?=$this->url('contact/show/update', ['id' => 987])?>">Modifier</a>
-                <a class="btn btn-xs btn-danger" href="<?=$this->url('contact/show/delete', ['id' => 987])?>">Supprimer</a>
-            </td>
-        </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>
 
