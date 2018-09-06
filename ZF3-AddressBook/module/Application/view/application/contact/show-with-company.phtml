@@ -1,6 +1,14 @@
+<?php /** @var $contact \Application\Entity\Contact */ ?>
+
 <h2>Afficher un contact</h2>
 
-<p>Prénom : Jean</p>
-<p>Nom : Dupont</p>
-<p>Email : Jean.Dupont@gmail.com</p>
-<p>Téléphone : 06012345678</p>
+<p>Prénom : <?=$contact->getFirstName()?></p>
+<p>Nom : <?=$contact->getLastName()?></p>
+
+<?php if ($contact->getEmail()) : ?>
+<p>Email : <?=$contact->getEmail()?></p>
+<?php endif; ?>
+
+<?php if ($contact->getTelephone()) : ?>
+<p>Téléphone : <?=$contact->getTelephone()?></p>
+<?php endif; ?>

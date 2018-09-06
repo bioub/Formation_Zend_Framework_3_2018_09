@@ -4,8 +4,10 @@
 return [
     'aliases' => [
         'btspAlert' => \Bootstrap\View\Helper\Alert::class,
+        'btspButtonBack' => \Bootstrap\View\Helper\ButtonBack::class,
     ],
     'factories' => [
+        \Bootstrap\View\Helper\ButtonBack::class => \Bootstrap\View\Helper\ButtonBackFactory::class,
         \Bootstrap\View\Helper\Alert::class => \Zend\ServiceManager\Factory\InvokableFactory::class
     ]
     /*

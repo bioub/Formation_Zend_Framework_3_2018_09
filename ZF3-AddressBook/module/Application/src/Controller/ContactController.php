@@ -44,11 +44,6 @@ class ContactController extends AbstractActionController
         ]);
     }
 
-    public function showAction()
-    {
-        return new ViewModel();
-    }
-
     public function addAction()
     {
         return new ViewModel();
@@ -66,6 +61,17 @@ class ContactController extends AbstractActionController
 
     public function showWithCompanyAction()
     {
-        return new ViewModel();
+        $id = $this->params()->fromRoute('id');
+
+        $contact = $this->contactService->getById($id);
+
+        if (!$contact) {
+            // Erreur 404
+            return $this->createHttpNotFoundModel($this->response);
+        }
+
+        return new ViewModel([
+            'contact' => $contact,
+        ]);
     }
 }

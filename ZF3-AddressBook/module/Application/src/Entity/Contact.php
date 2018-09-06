@@ -33,13 +33,13 @@ class Contact
     protected $lastName;
 
     /**
-     * @var string
+     * @var string|null
      * @ORM\Column(length=80, nullable=true)
      */
     protected $email;
 
     /**
-     * @var string
+     * @var string|null
      * @ORM\Column(length=20, nullable=true)
      */
     protected $telephone;
@@ -99,40 +99,42 @@ class Contact
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
+     * @param null|string $email
      * @return Contact
      */
-    public function setEmail(string $email): Contact
+    public function setEmail(?string $email): Contact
     {
         $this->email = $email;
         return $this;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getTelephone(): string
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
     /**
-     * @param string $telephone
+     * @param null|string $telephone
      * @return Contact
      */
-    public function setTelephone(string $telephone): Contact
+    public function setTelephone(?string $telephone): Contact
     {
         $this->telephone = $telephone;
         return $this;
     }
+
+
 
 
 }
