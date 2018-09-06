@@ -4,8 +4,11 @@ namespace Application\Controller;
 
 use Application\Entity\Contact;
 use Application\Form\ContactForm;
+use Application\InputFilter\ContactInputFilter;
 use Application\Service\ContactService;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Zend\Form\Form;
+use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\JsonModel;
@@ -13,6 +16,12 @@ use Zend\View\Model\ViewModel;
 
 class ContactController extends AbstractActionController
 {
+    /** @var Request */
+    protected $request;
+
+    /** @var Request */
+    protected $response;
+
     /** @var ContactService */
     protected $contactService;
 
@@ -51,7 +60,19 @@ class ContactController extends AbstractActionController
         // TODO : idéalement récupérer le form depuis le service manager
         $form = new ContactForm();
 
+        if ($this->request->isPost()) {
 
+            $data = $this->request->getPost();
+            $form->setInputFilter(new ContactInputFilter());
+
+            $form->setData($data);
+
+            if ($form->isValid()) {
+
+                $this->contactService->insert($form->getData());
+                return $this->redirect()->toRoute('contact');
+            }
+        }
 
         return new ViewModel([
             'contactForm' => $form,

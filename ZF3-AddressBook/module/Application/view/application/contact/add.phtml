@@ -1,3 +1,33 @@
+<?php /** @var $contactForm \Application\Form\ContactForm */ ?>
 <h2>Contact Add</h2>
 
-<?=$this->form($contactForm)?>
+<?php $this->headStyle()->captureStart(); ?>
+/*
+label {
+    display: block;
+}
+*/
+<?php $this->headStyle()->captureEnd(); ?>
+
+<?=$this->form()->openTag($contactForm)?>
+<div>
+    <?=$this->formLabel($contactForm->get('firstName'))?>
+    <?=$this->formElement($contactForm->get('firstName')/*->setAttribute('class', 'form-control')*/)?>
+    <?=$this->formElementErrors($contactForm->get('firstName'))?>
+</div>
+<div>
+    <?=$this->formRow($contactForm->get('lastName'))?>
+</div>
+<div>
+    <?=$this->formRow($contactForm->get('email'))?>
+</div>
+<div>
+    <?=$this->formRow($contactForm->get('telephone'))?>
+</div>
+<div>
+    <button>Ajouter</button>
+</div>
+
+<?=$this->form()->closeTag()?>
+
+

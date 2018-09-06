@@ -6,6 +6,7 @@ namespace Application\Service;
 use Application\Entity\Contact;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 
 class ContactService
 {
@@ -39,5 +40,17 @@ class ContactService
     public function getById($id)
     {
         return $this->repository->find($id);
+    }
+
+    public function insert(array $data)
+    {
+        // TODO utiliser l'hydrateur via le service manager
+        $hydrator = new DoctrineObject($this->manager);
+        $contact = new Contact();
+
+        $hydrator->hydrate($data, $contact);
+
+        $this->manager->persist($contact);
+        $this->manager->flush();
     }
 }

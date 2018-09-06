@@ -19,7 +19,8 @@
     "zendframework/zend-mvc-plugins": "^1.0.1",
     "doctrine/doctrine-orm-module": "^2.1",
     "zendframework/zend-form": "^2.12",
-    "zendframework/zend-i18n": "^2.9"
+    "zendframework/zend-i18n": "^2.9",
+    "zendframework/zend-inputfilter": "^2.8"
   },
   "autoload": {
     "psr-4": {

@@ -11,8 +11,10 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
-    'Zend\I18n',
     'Zend\Cache',
+    'Zend\I18n',
+    'Zend\InputFilter',
+    'Zend\Filter',
     'Zend\Form',
     'Zend\Paginator',
     'Zend\Mvc\Plugin\Prg',
