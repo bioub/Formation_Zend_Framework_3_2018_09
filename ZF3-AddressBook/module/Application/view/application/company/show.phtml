@@ -1,0 +1,9 @@
+<?php /** @var $company \Application\Entity\Company */ ?>
+
+<h2>Afficher une société</h2>
+
+<p>Nom : <?= $this->escapeHtml($company->getName()) ?></p>
+
+<?php if ($company->getCity()) : ?>
+    <p>Ville : <?= $this->escapeHtml($company->getCity()) ?></p>
+<?php endif; ?>

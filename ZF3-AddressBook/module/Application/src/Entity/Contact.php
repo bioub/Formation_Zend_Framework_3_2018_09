@@ -135,6 +135,4 @@ class Contact
     }
 
 
-
-
 }

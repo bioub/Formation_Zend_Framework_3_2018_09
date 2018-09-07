@@ -4,30 +4,30 @@
 <?php $this->headStyle()->captureStart(); ?>
 /*
 label {
-    display: block;
+display: block;
 }
 */
 <?php $this->headStyle()->captureEnd(); ?>
 
-<?=$this->form()->openTag($contactForm)?>
+<?= $this->form()->openTag($contactForm) ?>
 <div>
-    <?=$this->formLabel($contactForm->get('firstName'))?>
-    <?=$this->formElement($contactForm->get('firstName')/*->setAttribute('class', 'form-control')*/)?>
-    <?=$this->formElementErrors($contactForm->get('firstName'))?>
+    <?= $this->formLabel($contactForm->get('firstName')) ?>
+    <?= $this->formElement($contactForm->get('firstName')/*->setAttribute('class', 'form-control')*/) ?>
+    <?= $this->formElementErrors($contactForm->get('firstName')) ?>
 </div>
 <div>
-    <?=$this->formRow($contactForm->get('lastName'))?>
+    <?= $this->formRow($contactForm->get('lastName')) ?>
 </div>
 <div>
-    <?=$this->formRow($contactForm->get('email'))?>
+    <?= $this->formRow($contactForm->get('email')) ?>
 </div>
 <div>
-    <?=$this->formRow($contactForm->get('telephone'))?>
+    <?= $this->formRow($contactForm->get('telephone')) ?>
 </div>
 <div>
     <button>Ajouter</button>
 </div>
 
-<?=$this->form()->closeTag()?>
+<?= $this->form()->closeTag() ?>
 
 

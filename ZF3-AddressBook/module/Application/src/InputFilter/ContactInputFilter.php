@@ -3,7 +3,6 @@
 namespace Application\InputFilter;
 
 
-
 use Zend\Filter\StringTrim;
 use Zend\InputFilter\Input;
 use Zend\InputFilter\InputFilter;

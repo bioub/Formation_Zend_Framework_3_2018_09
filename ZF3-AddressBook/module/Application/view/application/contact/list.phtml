@@ -2,7 +2,7 @@
 
 <?php $this->headStyle()->captureStart(); ?>
 body {
-    /* background: purple; */
+/* background: purple; */
 }
 <?php $this->headStyle()->captureEnd(); ?>
 
@@ -10,19 +10,20 @@ body {
 
 <table class="table">
     <tbody>
-        <?php foreach ($contacts as $c) : ?>
+    <?php foreach ($contacts as $c) : ?>
         <tr>
-            <td><?=$this->escapeHtml($c->getFirstName())?> <?=$this->escapeHtml($c->getLastName())?></td>
+            <td><?= $this->escapeHtml($c->getFirstName()) ?> <?= $this->escapeHtml($c->getLastName()) ?></td>
             <td>
-                <a class="btn btn-xs btn-primary" href="<?=$this->url('contact/show', ['id' => $c->getId()])?>">Afficher</a>
-                <a class="btn btn-xs btn-warning" href="<?=$this->url('contact/show/update', ['id' => $c->getId()])?>">Modifier</a>
-                <a class="btn btn-xs btn-danger" href="<?=$this->url('contact/show/delete', ['id' => $c->getId()])?>">Supprimer</a>
+                <a class="btn btn-xs btn-primary" href="<?= $this->url('contact/show', ['id' => $c->getId()]) ?>">Afficher</a>
+                <a class="btn btn-xs btn-warning"
+                   href="<?= $this->url('contact/show/update', ['id' => $c->getId()]) ?>">Modifier</a>
+                <a class="btn btn-xs btn-danger" href="<?= $this->url('contact/show/delete', ['id' => $c->getId()]) ?>">Supprimer</a>
             </td>
         </tr>
-        <?php endforeach; ?>
+    <?php endforeach; ?>
     </tbody>
 </table>
 
 <p>
-    <a class="btn btn-default" href="<?=$this->url('contact/add')?>">Ajouter un contact</a>
+    <a class="btn btn-default" href="<?= $this->url('contact/add') ?>">Ajouter un contact</a>
 </p>

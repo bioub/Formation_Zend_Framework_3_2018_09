@@ -6,10 +6,10 @@ return [
             'home' => [
                 'type' => \Zend\Router\Http\Literal::class,
                 'options' => [
-                    'route'    => '/',
+                    'route' => '/',
                     'defaults' => [
                         'controller' => \Application\Controller\IndexController::class,
-                        'action'     => 'index',
+                        'action' => 'index',
                     ],
                 ],
             ],
@@ -72,25 +72,52 @@ return [
                     ],
                 ],
             ],
+            'company' => [
+                'type' => \Zend\Router\Http\Literal::class,
+                'options' => [
+                    'route' => '/companies',
+                    'defaults' => [
+                        'controller' => \Application\Controller\CompanyController::class,
+                        'action' => 'list',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'show' => [
+                        'type' => \Zend\Router\Http\Segment::class,
+                        'options' => [
+                            'route' => '/:id',
+                            'constraints' => [
+                                'id' => '[1-9][0-9]*',
+                            ],
+                            'defaults' => [
+                                'action' => 'show',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
         'factories' => [
-            \Application\Service\ContactService::class => \Application\Service\ContactServiceFactory::class
+            \Application\Service\ContactService::class => \Application\Service\InjectEntityManagerFactory::class,
+            \Application\Service\CompanyService::class => \Application\Service\InjectEntityManagerFactory::class,
         ],
     ],
     'controllers' => [
         'factories' => [
             \Application\Controller\IndexController::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
-            \Application\Controller\ContactController::class => \Application\Controller\ContactControllerFactory::class,
+            \Application\Controller\ContactController::class => \Application\Controller\SingleServiceControllerFactory::class,
+            \Application\Controller\CompanyController::class => \Application\Controller\SingleServiceControllerFactory::class,
         ],
     ],
     'view_manager' => [
         'display_not_found_reason' => false,
-        'display_exceptions'       => false,
-        'doctype'                  => 'HTML5',
-        'not_found_template'       => 'error/404',
-        'exception_template'       => 'error/index',
+        'display_exceptions' => false,
+        'doctype' => 'HTML5',
+        'not_found_template' => 'error/404',
+        'exception_template' => 'error/index',
         /*
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',

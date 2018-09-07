@@ -3,14 +3,13 @@
 namespace Application\Controller;
 
 
-use Application\Service\ContactService;
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class ContactControllerFactory implements FactoryInterface
+class SingleServiceControllerFactory implements FactoryInterface
 {
 
     /**
@@ -27,7 +26,8 @@ class ContactControllerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $service = $container->get(ContactService::class);
-        return new ContactController($service);
+        $serviceClass = str_replace('Controller', 'Service', $requestedName);
+        $service = $container->get($serviceClass);
+        return new $requestedName($service);
     }
 }
