@@ -2,8 +2,6 @@
 
 namespace Application\Controller;
 
-use Application\Form\ContactForm;
-use Application\InputFilter\ContactInputFilter;
 use Application\Service\ContactService;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -32,19 +30,6 @@ class ContactController extends AbstractActionController
 
     public function listAction()
     {
-        /*
-        $response = new Response();
-        $response->setStatusCode(200);
-        $response->setContent('Hello List Response');
-        */
-
-        // return $this->redirect()->toUrl('https://www.google.fr/');
-        // return $this->notFoundAction();
-
-        // $now = new \DateTime();
-        // return new ViewModel(compact($now));
-
-
         return new ViewModel([
             'contacts' => $this->contactService->getAll(),
         ]);
@@ -52,21 +37,14 @@ class ContactController extends AbstractActionController
 
     public function addAction()
     {
-        // TODO : idéalement récupérer le form depuis le service manager
-        $form = new ContactForm(); // TODO déplacer dans le service
+        $form = $this->contactService->getForm();
 
         if ($this->request->isPost()) {
+            $contact = $this->contactService->insert($this->request->getPost());
 
-            $data = $this->request->getPost();
-            $form->setInputFilter(new ContactInputFilter()); // TODO déplacer dans le service
-
-            $form->setData($data);
-
-            if ($form->isValid()) {
-
-                $this->contactService->insert($form->getData());
-                $this->flashMessenger()->addSuccessMessage("$data[firstName] a bien été créé");
-                return $this->redirect()->toRoute('contact');
+            if ($contact) {
+                $this->flashMessenger()->addSuccessMessage("{$contact->getFirstName()} a bien été créé");
+                return $this->redirect()->toRoute('contact/show', ['id' => $contact->getId()]);
             }
         }
 
@@ -102,4 +80,5 @@ class ContactController extends AbstractActionController
             'contact' => $contact,
         ]);
     }
+
 }

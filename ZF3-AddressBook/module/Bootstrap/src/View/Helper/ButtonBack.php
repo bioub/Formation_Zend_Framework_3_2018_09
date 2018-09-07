@@ -32,7 +32,10 @@ class ButtonBack extends AbstractHelper
 
         // syntaxe HEREDOC (php.net)
         return <<<MA_CHAINE_DE_CARACTERE
-<a href="{$referer->getUri()}" class="btn btn-default">Back</a>
+<a href="{$referer->getUri()}" class="btn btn-default">
+<span class="glyphicon glyphicon-menu-left"></span>
+Back
+</a>
 MA_CHAINE_DE_CARACTERE;
     }
 }

@@ -11,12 +11,26 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
 class Module implements ConfigProviderInterface
 {
-    const VERSION = '3.0.3-dev';
 
     public function getConfig()
     {
-        return include __DIR__ . '/../config/module.config.php';
-    }
+        $files = scandir(__DIR__ . '/../config');
 
+        $config = [];
+
+        foreach ($files as $f) {
+            $matches = [];
+            $result = preg_match('/([a-zA-Z0-9_-]+)\.config\.php$/', $f, $matches);
+            if ($result === 0) {
+                continue;
+            }
+
+            $configKey = $matches[1];
+
+            $config[$configKey] = include __DIR__ . '/../config/' . $f;
+        }
+
+        return $config;
+    }
 
 }

@@ -27,7 +27,7 @@
     ?>
 </head>
 <body>
-<?=$this->partial('layout/_menu.phtml')?>
+<?= $this->partial('layout/_menu.phtml') ?>
 <div class="container">
     <?php // echo $this->plugin('\Bootstrap\View\Helper\Alert')('Coucou') ?>
     <?php // echo $this->plugin('btspAlert')('Coucou') ?>
@@ -35,10 +35,12 @@
     <?php
     // TODO créer une aide de vue pour n'appeller qu'une méthode
     // au lieu d'une boucle, ex :
-    // echo $this->btspAlertFlashMessage('success');
+    echo $this->btspAlertFlashMessenger('success');
+    /*
     foreach ($this->flashMessenger()->getSuccessMessages() as $msg) {
         echo $this->btspAlert($msg);
     }
+    */
     ?>
     <?= $this->content ?>
     <?= $this->btspButtonBack() ?>

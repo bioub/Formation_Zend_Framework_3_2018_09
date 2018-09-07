@@ -1,15 +1,19 @@
 <?php
 
-namespace Bootstrap\View\Helper;
+namespace Application\Service;
 
 
+use Application\Form\ContactForm;
+use Application\InputFilter\ContactInputFilter;
+use Doctrine\ORM\EntityManager;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class AlertFactory implements FactoryInterface
+class ContactServiceFactory implements FactoryInterface
 {
 
     /**
@@ -26,6 +30,10 @@ class AlertFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new Alert();
+        $manager = $container->get(EntityManager::class);
+        $form = $container->get('FormElementManager')->get(ContactForm::class);
+        $inputFilter = $container->get('InputFilterManager')->get(ContactInputFilter::class);
+        $hydrator = $container->get('HydratorManager')->get(DoctrineObject::class);
+        return new ContactService($manager, $form, $inputFilter, $hydrator);
     }
 }

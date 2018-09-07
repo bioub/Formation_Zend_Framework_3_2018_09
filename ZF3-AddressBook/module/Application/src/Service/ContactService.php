@@ -4,6 +4,8 @@ namespace Application\Service;
 
 
 use Application\Entity\Contact;
+use Application\Form\ContactForm;
+use Application\InputFilter\ContactInputFilter;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
@@ -16,14 +18,24 @@ class ContactService
     /** @var EntityRepository */
     protected $repository;
 
+    /** @var ContactForm */
+    protected $form;
+
+
+    /** @var DoctrineObject */
+    protected $hydrator;
+
     /**
      * ContactService constructor.
      * @param EntityManager $manager
      */
-    public function __construct(EntityManager $manager)
+    public function __construct(EntityManager $manager, ContactForm $form, ContactInputFilter $inputFilter, DoctrineObject $hydrator)
     {
         $this->manager = $manager;
         $this->repository = $manager->getRepository(Contact::class);
+        $this->form = $form;
+        $this->form->setInputFilter($inputFilter);
+        $this->hydrator = $hydrator;
     }
 
     /**
@@ -42,16 +54,21 @@ class ContactService
         return $this->repository->find($id);
     }
 
-    public function insert(array $data)
+    public function insert($data): Contact
     {
-        // TODO utiliser l'hydrateur via le service manager
-        $hydrator = new DoctrineObject($this->manager);
-        $contact = new Contact();
+        $this->form->setData($data);
 
-        $hydrator->hydrate($data, $contact);
+        if (!$this->form->isValid()) {
+            return false;
+        }
 
-        $this->manager->persist($contact);
+        $entity = new Contact();
+        $this->hydrator->hydrate($data->toArray(), $entity);
+
+        $this->manager->persist($entity);
         $this->manager->flush();
+
+        return $entity;
     }
 
     public function count()
@@ -62,4 +79,13 @@ class ContactService
 
         // ... $resultSet->fetch()
     }
+
+    /**
+     * @return ContactForm
+     */
+    public function getForm(): ContactForm
+    {
+        return $this->form;
+    }
+
 }

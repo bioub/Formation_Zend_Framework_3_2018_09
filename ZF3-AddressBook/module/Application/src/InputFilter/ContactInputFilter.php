@@ -10,7 +10,7 @@ use Zend\Validator\StringLength;
 
 class ContactInputFilter extends InputFilter
 {
-    public function __construct()
+    public function init()
     {
         // firstName
         $input = new Input('firstName');

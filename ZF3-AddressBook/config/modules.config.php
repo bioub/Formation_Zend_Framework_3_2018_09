@@ -12,6 +12,7 @@
  */
 return [
     'Zend\Cache',
+    'Zend\Hydrator',
     'Zend\I18n',
     'Zend\InputFilter',
     'Zend\Filter',

@@ -13,7 +13,10 @@ class ContactForm extends Form
     public function __construct()
     {
         parent::__construct('contactForm');
+    }
 
+    public function init()
+    {
         $element = new Text('firstName');
         $element->setLabel('Prénom');
         $this->add($element);
@@ -29,11 +32,6 @@ class ContactForm extends Form
         $element = new Tel('telephone'); // Required par défaut
         $element->setLabel('Téléphone');
         $this->add($element);
-    }
-
-    public function init()
-    {
-
     }
 
 }
