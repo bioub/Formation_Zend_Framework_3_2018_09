@@ -22,11 +22,11 @@ class ContactForm extends Form
         $element->setLabel('Nom');
         $this->add($element);
 
-        $element = new Email('email');
+        $element = new Email('email'); // Required par défaut
         $element->setLabel('Email');
         $this->add($element);
 
-        $element = new Tel('telephone');
+        $element = new Tel('telephone'); // Required par défaut
         $element->setLabel('Téléphone');
         $this->add($element);
     }

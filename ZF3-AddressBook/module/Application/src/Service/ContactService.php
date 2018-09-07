@@ -53,4 +53,13 @@ class ContactService
         $this->manager->persist($contact);
         $this->manager->flush();
     }
+
+    public function count()
+    {
+        $sql = "SELECT COUNT(id) FROM contact";
+        $connection = $this->manager->getConnection(); // Même API que PDO
+        $resultSet = $connection->query($sql);
+
+        // ... $resultSet->fetch()
+    }
 }

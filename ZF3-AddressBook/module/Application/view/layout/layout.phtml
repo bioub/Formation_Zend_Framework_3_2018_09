@@ -49,7 +49,15 @@
         <div class="container">
             <?php // echo $this->plugin('\Bootstrap\View\Helper\Alert')('Coucou') ?>
             <?php // echo $this->plugin('btspAlert')('Coucou') ?>
-            <?php // echo $this->btspAlert('Coucou') ?>
+            <?php // echo $this->btspAlert('Coucou'); ?>
+            <?php
+            // TODO créer une aide de vue pour n'appeller qu'une méthode
+            // au lieu d'une boucle, ex :
+            // echo $this->btspAlertFlashMessage('success');
+            foreach ($this->flashMessenger()->getSuccessMessages() as $msg) {
+                echo $this->btspAlert($msg);
+            }
+            ?>
             <?= $this->content ?>
             <?= $this->btspButtonBack() ?>
             <hr>

@@ -58,18 +58,19 @@ class ContactController extends AbstractActionController
     public function addAction()
     {
         // TODO : idéalement récupérer le form depuis le service manager
-        $form = new ContactForm();
+        $form = new ContactForm(); // TODO déplacer dans le service
 
         if ($this->request->isPost()) {
 
             $data = $this->request->getPost();
-            $form->setInputFilter(new ContactInputFilter());
+            $form->setInputFilter(new ContactInputFilter()); // TODO déplacer dans le service
 
             $form->setData($data);
 
             if ($form->isValid()) {
 
                 $this->contactService->insert($form->getData());
+                $this->flashMessenger()->addSuccessMessage("$data[firstName] a bien été créé");
                 return $this->redirect()->toRoute('contact');
             }
         }
@@ -86,6 +87,8 @@ class ContactController extends AbstractActionController
 
     public function deleteAction()
     {
+        // Si form de confirmation oui/non
+        // pas de Zend\Form
         return new ViewModel();
     }
 

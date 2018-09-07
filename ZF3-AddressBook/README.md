@@ -2,7 +2,7 @@
 
 ## Routes
 
-* Créer un contrôleur CompanyController avec 2 méthodes listAction et showAction et leur faire retourner un objet ViewModel
+* Créer un contrôleur `CompanyController` avec 2 méthodes listAction et showAction et leur faire retourner un objet ViewModel
 * L'enregistrer dans l'annuaire de contrôleurs grâce à une InvokableFactory
 * Créer 2 vues show.phtml et list.phtml dans views/application/company avec du HTML statique (titre + liste pour list et titre + quelques champs pour show)
 * Créer une route company et une route enfant show sur le même modèle que contact
@@ -15,9 +15,10 @@
 * Compléter votre entity avec des getters/setters
 * Lancer la commande doctrine pour mettre à jour la structure de la base de données
 (vérifier avant la requete avec --dump-sql)
+* Dans phpMyAdmin insérer quelques sociétés
 * Créer une classe CompanyService en lui injectant l'EntityManager de Doctrine
 * Créer 2 méthodes getAll et getById sur le même modèle que ContactService
-* Créer une factory pour CompanyService en allant chercher la clé de Doctrine dans le container
+* Créer une factory pour CompanyService en allant chercher la clé de Doctrine dans le container (tester la commander `vendor\bin\generate-factory-for-class`)
 * Enregistrer la factory dans la config sous service_manager
 
 ## Controleurs + vues

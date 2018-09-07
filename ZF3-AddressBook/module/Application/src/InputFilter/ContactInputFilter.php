@@ -21,7 +21,7 @@ class ContactInputFilter extends InputFilter
         $input->getFilterChain()->attach($filter);
 
         $validator = new StringLength();
-        $validator->setMax(40);
+        $validator->setMax(40)->setMessage('Le prénom ne doit pas dépasser %max% caractères', StringLength::TOO_LONG);
         $input->getValidatorChain()->attach($validator);
 
         $this->add($input);
