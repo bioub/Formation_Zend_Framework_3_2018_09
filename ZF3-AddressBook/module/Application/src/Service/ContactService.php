@@ -6,6 +6,7 @@ namespace Application\Service;
 use Application\Entity\Contact;
 use Application\Form\ContactForm;
 use Application\InputFilter\ContactInputFilter;
+use Application\Repository\ContactRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
@@ -15,7 +16,7 @@ class ContactService
     /** @var EntityManager */
     protected $manager;
 
-    /** @var EntityRepository */
+    /** @var ContactRepository */
     protected $repository;
 
     /** @var ContactForm */
@@ -51,7 +52,7 @@ class ContactService
      */
     public function getById($id)
     {
-        return $this->repository->find($id);
+        return $this->repository->findWithCompany($id);
     }
 
     public function insert($data): Contact

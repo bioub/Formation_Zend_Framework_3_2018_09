@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Contact
  * @package Application\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\Application\Repository\ContactRepository")
  * @ORM\Table(name="contact")
  */
 class Contact
@@ -43,6 +43,13 @@ class Contact
      * @ORM\Column(length=20, nullable=true)
      */
     protected $telephone;
+
+    /**
+     * Rajouter fetch="EAGER" pour forcer la jointure à ManyToOne
+     * @var Company
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Company")
+     */
+    protected $company;
 
     /**
      * @return int
@@ -131,6 +138,24 @@ class Contact
     public function setTelephone(?string $telephone): Contact
     {
         $this->telephone = $telephone;
+        return $this;
+    }
+
+    /**
+     * @return Company
+     */
+    public function getCompany(): Company
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param Company $company
+     * @return Contact
+     */
+    public function setCompany(Company $company): Contact
+    {
+        $this->company = $company;
         return $this;
     }
 

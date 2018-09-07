@@ -2,6 +2,6 @@
 
 return [
     'factories' => [
-        \Application\Form\ContactForm::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+        \Application\Form\ContactForm::class => \Application\Service\InjectEntityManagerFactory::class,
     ]
 ];

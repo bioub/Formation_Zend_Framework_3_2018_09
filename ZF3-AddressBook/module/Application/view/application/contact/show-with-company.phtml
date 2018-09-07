@@ -12,3 +12,7 @@
 <?php if ($contact->getTelephone()) : ?>
     <p>Téléphone : <?= $this->escapeHtml($contact->getTelephone()) ?></p>
 <?php endif; ?>
+
+<?php if ($contact->getCompany()) : ?>
+    <p>Société : <?= $this->escapeHtml($contact->getCompany()->getName()) ?></p>
+<?php endif; ?>
